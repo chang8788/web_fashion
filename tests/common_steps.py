@@ -17,7 +17,7 @@ class CommonSteps(BaseCase):
 
   def input_name_email_click_signup_btn_and_verify_text(self):
       self.type("//input[@data-qa='signup-name']", "thutrang")
-      self.type("//input[@data-qa='signup-email']", "test1112@yopmail.com")
+      self.type("//input[@data-qa='signup-email']", "test1124@yopmail.com")
       self.click("//button[@data-qa='signup-button']")
       self.assert_text("ENTER ACCOUNT INFORMATION", "//b")
 
@@ -196,3 +196,18 @@ class CommonSteps(BaseCase):
       self.assert_text("Review Your Order")
       self.type("//textarea[@name='message']", "abc")
       self.click("//a[@href='/payment']")
+
+  def input_payment_detail_verify_text(self):
+      self.type("//input[@name='name_on_card']", "1")
+      self.type("//input[@name='card_number']", "1")
+      self.type("//input[@name='cvc']", "1")
+      self.type("//input[@name='expiry_month']", "1")
+      self.type("//input[@name='expiry_year']", "1")
+      self.click("//button[@id='submit']")
+      self.assert_text("Your order has been placed successfully!", "body")
+
+
+
+
+
+
