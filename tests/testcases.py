@@ -95,83 +95,32 @@ class Testcases(CommonSteps):
       self.click_delete_btn_and_verify_text()
       self.click("//a[@data-qa='continue-button']")
 
-        # self.open("http://automationexercise.com")
+  @pytest.mark.tc15
+  def test_tc15_place_order_register_before_checkout(self):
+			self.open_home_and_verify_page()
+			self.click_signup_btn_and_verify_text()
+			self.input_name_email_click_signup_btn_and_verify_text()
+			self.input_enter_account_information_and_verify_text()
+			self.click_continue_btn_and_verify_text()
+			self.add_product_and_view_cart()
+			self.click_cart_and_proceed_and_verify_text_input_comment_and_submit()
+			self.input_payment_detail_verify_text()
+			self.click_delete_btn_and_verify_text()
+			self.click("//a[@data-qa='continue-button']")
 
-        # # Step 3: Verify home page visible
-        # self.assert_title("Automation Exercise")
+  @pytest.mark.tc16
+  def test_tc16_place_order_login_before_checkout(self):
+      self.open_home_and_verify_page()
+      self.click_signup_btn_and_verify_text()
+      self.input_correct_email_password_click_login_btn_and_verify_text_tc3()
+      self.add_product_and_view_cart()
+      self.click_cart_and_proceed_and_verify_text_input_comment_and_submit()
+      self.input_payment_detail_verify_text()
+      self.click_delete_btn_and_verify_text()
+      self.click("//a[@data-qa='continue-button']")
 
-        # # Step 4: Add product to cart
-        # self.click("//a[@href='/product_details/1']")
-        # self.click("//button[@type='button']")  # Add to cart
-        # self.wait_for_element_visible("//div[@class='modal-content']", timeout=10)
-        # self.click("//a[@href='/view_cart']")
-
-        # # Step 5 + 6: Verify cart page
-        # self.assert_element("//li[contains(text(),'Shopping Cart')]")
-
-        # # Step 7: Proceed to checkout
-        # self.click("//a[contains(text(),'Proceed To Checkout')]")
-
-        # # Step 8: Click Register/Login
-        # self.click("//a[contains(text(),'Register / Login')]")
-
-        # # Step 9: Fill details in Signup
-        # self.type("input[name='name']", "TestUser")
-        # self.type("input[data-qa='signup-email']", "testuser123@example.com")
-        # self.click("button[data-qa='signup-button']")
-
-        # # Fill other account info
-        # self.click("input[id='id_gender1']")
-        # self.type("input[name='password']", "123456")
-        # self.select_option_by_value("select[id='days']", "1")
-        # self.select_option_by_value("select[id='months']", "1")
-        # self.select_option_by_value("select[id='years']", "2000")
-        # self.type("input[name='first_name']", "Test")
-        # self.type("input[name='last_name']", "User")
-        # self.type("input[name='address1']", "123 Street")
-        # self.type("input[name='state']", "CA")
-        # self.type("input[name='city']", "Los Angeles")
-        # self.type("input[name='zipcode']", "12345")
-        # self.type("input[name='mobile_number']", "123456789")
-        # self.click("button[data-qa='create-account']")
-
-        # # Step 10: Verify 'ACCOUNT CREATED!'
-        # self.assert_text("ACCOUNT CREATED!", "h2")
-        # self.click("a[data-qa='continue-button']")
-
-        # # Step 11: Verify 'Logged in as username'
-        # self.assert_text("Logged in as TestUser")
-
-        # # Step 12: Click Cart
-        # self.click("//a[@href='/view_cart']")
-
-        # # Step 13: Proceed to checkout again
-        # self.click("//a[contains(text(),'Proceed To Checkout')]")
-
-        # # Step 14: Verify Address Details + Order review
-        # self.assert_element("//h2[contains(text(),'Address Details')]")
-
-        # # Step 15: Enter description & click 'Place Order'
-        # self.type("textarea[name='message']", "This is a test order")
-        # self.click("a[href='/payment']")
-
-        # # Step 16: Enter payment details
-        # self.type("input[name='name_on_card']", "Test User")
-        # self.type("input[name='card_number']", "4111111111111111")
-        # self.type("input[name='cvc']", "123")
-        # self.type("input[name='expiry_month']", "12")
-        # self.type("input[name='expiry_year']", "2025")
-
-        # # Step 17: Click 'Pay and Confirm Order'
-        # self.click("button[id='submit']")
-
-        # # Step 18: Verify success message
-        # # --> Dùng assert_text thay vì wait_for_text_visible
-        # self.assert_text("Your order has been placed successfully!", "body")
-
-        # # Step 19: Click 'Delete Account'
-        # self.click("//a[@href='/delete_account']")
-
-        # # Step 20: Verify 'ACCOUNT DELETED!'
-        # self.assert_text("ACCOUNT DELETED!", "h2")
-        # self.click("//a[@data-qa='continue-button']")
+  @pytest.mark.tc17
+  def test_tc17_remove_product_from_cart(self):
+      self.open_home_and_verify_page()
+      self.add_product_and_view_cart()
+      self.remove_product_in_cart_and_verify_element()
