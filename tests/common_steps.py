@@ -278,3 +278,11 @@ class CommonSteps(BaseCase):
       self.assert_element("//img[@src='get_product_picture/28']")
       self.assert_element("//img[@src='get_product_picture/2']")
       
+  def click_view_product_and_verify_text(self):
+      self.click("//a[@href='/product_details/1']")
+      self.assert_text("WRITE YOUR REVIEW")
+      self.type("//input[@id='name']", "trang")
+      self.type("//input[@id='email']", "test123@yopmai.com")
+      self.type("//textarea[@id='review']", "abc")
+      self.click("//button[@id='button-review']")
+      self.assert_text("Thank you for your review.", timeout=5)    

@@ -146,3 +146,8 @@ class Testcases(CommonSteps):
       self.input_correct_email_password_click_login_btn_and_verify_text_tc2()
       self.click_view_cart_and_verify_element()
 
+  @pytest.mark.tc21
+  def test_tc21_add_review_on_product(self):
+      self.open_home_and_verify_page()
+      self.click_products_btn_and_verify_text()
+      self.click_view_product_and_verify_text()
