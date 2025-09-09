@@ -124,3 +124,25 @@ class Testcases(CommonSteps):
       self.open_home_and_verify_page()
       self.add_product_and_view_cart()
       self.remove_product_in_cart_and_verify_element()
+
+  @pytest.mark.tc18
+  def test_tc18_view_category_products(self):
+      self.open_home_and_verify_page()
+      self.verify_category_click_sub_menu_and_verify_text()
+  
+  @pytest.mark.tc19
+  def test_tc19_view_cart_brand_product(self):
+      self.open_home_and_verify_page()
+      self.click_products_btn_and_verify_text()
+      self.click_brand_name_and_verify_element()
+
+  @pytest.mark.tc20
+  def test_tc20_search_products_and_add_cart_after_login(self):
+      self.open_home_and_verify_page()
+      self.click_products_btn_and_verify_text()
+      self.search_product_and_verify_result()
+      self.add_tshirt_product_and_click_cart_and_verify_product()
+      self.click_login_btn_and_verify_text() 
+      self.input_correct_email_password_click_login_btn_and_verify_text_tc2()
+      self.click_view_cart_and_verify_element()
+

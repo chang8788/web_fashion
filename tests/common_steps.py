@@ -28,7 +28,7 @@ class CommonSteps(BaseCase):
       self.assert_text("Email Address already exist!")  
 
   def input_correct_email_password_click_login_btn_and_verify_text_tc2(self):
-      self.type("//input[@data-qa='login-email']", "test2222@yopmail.com")
+      self.type("//input[@data-qa='login-email']", "test852456@yopmail.com")
       self.type("//input[@data-qa='login-password']", "1")
       self.click("//button[@data-qa='login-button']")
       self.assert_element("//a[contains(text(),'Logged in as')]")
@@ -218,4 +218,63 @@ class CommonSteps(BaseCase):
       self.click("//a[@class='cart_quantity_delete']")
       self.assert_element_absent("//img[@src='get_product_picture/1']/ancestor::tr")
 
-  
+  def verify_category_click_sub_menu_and_verify_text(self):
+    self.assert_text("CATEGORY")
+    self.click("//a[@href='#Women']")
+    self.click("//a[@href='/category_products/1']")
+    self.assert_text("WOMEN - DRESS PRODUCTS")
+    self.click("//a[@href='#Men']")
+    self.click("//a[@href='/category_products/3']")
+    self.assert_text("MEN - TSHIRTS PRODUCTS")
+
+  def click_brand_name_and_verify_element(self):
+    self.click("//a[@href='/brand_products/Polo']")
+    self.assert_element("//div[@class='features_items']")
+    self.click("//a[@href='/brand_products/H&M']")
+    self.assert_element("//div[@class='features_items']")
+
+  def search_product_and_verify_result(self):
+    keyword = "Tshirt"
+
+
+    # nhập từ khóa search
+    self.type("//input[@id='search_product']", keyword)
+    self.click("//button[@id='submit_search']")
+
+
+    # verify text 'SEARCHED PRODUCTS'
+    self.assert_text("SEARCHED PRODUCTS")
+
+
+    # lấy danh sách kết quả
+    product_names = self.find_elements("//div[@class='productinfo text-center']/p")
+    assert len(product_names) > 0, "No products found for search!"
+
+
+    # hàm chuẩn hóa text: bỏ khoảng trắng, dấu '-' và đưa về lowercase
+    def normalize(text):
+        return text.lower().replace("-", "").replace(" ", "")
+
+
+    # verify từng sản phẩm trong kết quả chứa từ khóa
+    for product in product_names:
+        product_text = product.text
+        assert normalize(keyword) in normalize(product_text), \
+            f"Product '{product_text}' does not match search keyword '{keyword}'"
+
+  def add_tshirt_product_and_click_cart_and_verify_product(self):
+      self.scroll_into_view("(//div[@class='productinfo text-center'])[1]")
+      self.hover("(//div[@class='productinfo text-center'])[1]")
+      self.click("//a[@data-product-id='2']")
+      self.click("//button[@class='btn btn-success close-modal btn-block']")      
+      self.hover("(//div[@class='productinfo text-center'])[2]")
+      self.click("//a[@data-product-id='28']")
+      self.click("//a[@href='/view_cart']")      
+      self.assert_element("//img[@src='get_product_picture/28']")
+      self.assert_element("//img[@src='get_product_picture/2']")     
+
+  def click_view_cart_and_verify_element(self):
+      self.click("//a[@href='/view_cart']")      
+      self.assert_element("//img[@src='get_product_picture/28']")
+      self.assert_element("//img[@src='get_product_picture/2']")
+      
